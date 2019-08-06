@@ -44,9 +44,13 @@ g.append('path').attr('d', pathData);
 
 const browWidth = 30;
 const browHeight = 10;
+const browYOffset = browWidth * 2;
 
 const brows = g.append('g')
-    .attr('transform', `translate(0, -60)`);
+    .attr('transform', `translate(0, -${browYOffset})`);
+    
+    brows.transition().duration(2000).attr('transform', `translate(0, ${ -browYOffset - 20} )`)
+    .transition().duration(2000).attr('transform', `translate(0, ${ -browYOffset } )`);
 
 const leftEyeBrow = brows.append('rect')
     .attr('width', browWidth)
