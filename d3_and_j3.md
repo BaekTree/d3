@@ -105,6 +105,12 @@ p2.introduce = function(){
 }
 document.write(p2.introduce());
 ```
+result: 
+```
+my name is baek
+
+override : new Attr , and original attributes still alive: kim
+```
 
 ## asynchronous programming: promise and generator
 
