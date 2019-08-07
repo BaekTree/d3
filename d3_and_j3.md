@@ -30,6 +30,82 @@ export default myVar=...;
 ```
 import {func} from 'src.js//defaut으로 보냈으면 이름이 동일하지 않다면 그냥 default으로 보낸 것으로 받는다.
 ```
+
+## typeof
+* syntax
+```
+typeof operand
+typeof(operand)
+```
+
+* What about from 'points.js'?
+* 어떻게 불러오지... ㅜㅜ ./point가 뭐지... 어디에 속해있는 directory인지 모르겠다.
+
+## 객체 of javascript
+```
+var person = {}
+person.name = 'baek';
+person.introduce = function(){
+    return "my name is " + this.name;
+}
+person.introduce();
+```
+
+```
+var person = {
+    name = 'baek';
+    introduce = function(){
+        return "my name is " + this.name; 
+    }
+}
+person.introduce();
+```
+
+```
+//js에서는 class가 없다. 그냥 object를 새로 만든다. 그래서 생성자로부터 생성된 object들이 각기 다른 properties을 가질 수도 있다.
+
+function Person(){};//constructer 만들기.
+
+var p = new Person();//생성자의 사용. new으로 한다.
+p.name = 'baek';
+introduce = function(){
+    return "my name is " + this.name; 
+}
+
+p.introduce();
+
+var p2 = new Person();//생성자의 사용. new으로 한다.
+p2.name = 'kim';
+introduce = function(){
+    return "my name is " + this.name; 
+}
+
+p2.introduce();
+```
+
+```
+//class처럼 attributes을 정해두기
+function Person(name){
+    this.name = name;
+    this.introduce = function(){
+        return 'my name is ' + this.name;
+    }
+}
+
+var p1 = new Person('baek');
+p1.introduce();
+
+var p2 = new Person('kim');
+p2.introduce();
+
+ 
+p2.newAttr = 'new Attr'
+p2.introduce = function(){
+    return 'override : ' + this.newAttr + " , and original attributes still alive: " + this.name;
+}
+document.write(p2.introduce());
+```
+
 ## asynchronous programming: promise and generator
 
 Anonymous function
