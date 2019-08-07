@@ -68,7 +68,7 @@ function Person(){};//constructer 만들기.
 
 var p = new Person();//생성자의 사용. new으로 한다.
 p.name = 'baek';
-introduce = function(){
+p.introduce = function(){
     return "my name is " + this.name; 
 }
 
@@ -76,7 +76,7 @@ p.introduce();
 
 var p2 = new Person();//생성자의 사용. new으로 한다.
 p2.name = 'kim';
-introduce = function(){
+p2.introduce = function(){
     return "my name is " + this.name; 
 }
 
