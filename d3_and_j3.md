@@ -386,3 +386,20 @@ for (let value of iterable){
 * [1,7,3,7] ---( x 10)---> [10,70,30,70]
 * mapping 하는 규칙이 function으로 정의되어 parameter으로 들어간다.
 * mapping 한 결과를 반환한다.
+* 배열에서 한 부분을 추출하거나 분리하는데 사용할 수도 있다.
+```
+    const girls = [
+       {name: 'Sarah', age: 19},
+       {name: 'Laura', age: 10},
+       {name: 'Jessy', age: 29},
+       {name: 'Amy', age: 23}];
+
+    let girlsAges = girls.map((girl) => girl.age);
+
+    console.log(girlsAges);  //[19, 10, 29, 23]
+```
+
+# d3.select()....attr('name','value')
+>If a value is specified, sets the attribute with the specified name to the specified value on the selected elements and returns this selection. If the value is a constant, all elements are given the same attribute value; otherwise, if the value is a function, it is evaluated for each selected element, in order, being passed the current datum (d), the current index (i), and the current group (nodes), with this as the current DOM element (nodes[i]). The function’s return value is then used to set each element’s attribute. A null value will remove the specified attribute.
+* value parameter가 constant이면 모든 element에 동일한 값을 적용한다.
+* 만약 value가 function이면 모든 element을 각각의 element에 해당되는 작동을 수행한다. 아마 모든 element을 돌면서 name을 input값으로 넣고 각각의 if --- 등의 조건에 따라 다른 일을 수행할 것이다.
