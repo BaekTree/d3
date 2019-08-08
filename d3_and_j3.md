@@ -295,4 +295,89 @@ function myFunction(item) {
 # data join
 * data   <->   element
 * enter update exit
+# D3.js Scale Linear
+https://www.dashingd3js.com/d3js-scales
+
+## d3 linearScale
+<img src="https://s3.amazonaws.com/dashingd3js/images/d3.js_scales_scale_domain_down_to_range_300x300.png">
+domain과 range의 default 범위:
+[0,1]의 범위를 [0,1]로 반환한다. 
+??? 이 말은 그래도 받은 그대로 반환한다고 한다...;;;
+scaleLinear 함수는 정해진 domain과 range의 범위에서 domain의 값을 input으로 받아서 range의 범위로 scale한 값을 반환한다.
+```
+var scale = d3.scaleLiniear();
+scale(1); //1이 반환
+scale(2);   //2가 반환
+```
+
+>scale.domain([start, end])
+domain 범위를 설정
+domain 범위가 defult range[0,1]사이로 scale되어 반환된다
+```
+var scale = d3.scaleLiniear();
+scale.domain([0,10000]);
+scale(1);//0.0001
+scale(2);//0.0002
+```
+
+>scale.domain([0,10000]).range([0,100]) //단위가 변하는 것이다.
+domain에서 100 = range 의 1이다.
+10000 / 100 = 100
+```
+var scale = d3.scaleLiniear();
+scale.domain([0,10000]).range([0,100]);
+
+scale(1);//0.01
+scale(2);//0.02
+scale(100);//1
+```
+
+## d3.max(array, callback)
+* array에서 
+># d3.max(iterable[, accessor]).
+Returns the maximum value in the given iterable using natural order. If the iterable contains no comparable values, returns undefined. **An optional accessor function may be specified, which is equivalent to calling Array.from before computing the maximum value.**
+from d3 github
+
+```
+const xScale = d3.scaleLinear()
+        .domain([0,d3.max(data, d=>d.population)])
+        .range([0,width]);
+```
+data array가 다차원 배열이고, 그 중에서 일부를(가령 하나의 column을) 선택해서 max 하려고 할 때, 전체 data array에서 가공할 부분을 선택할 함수가 accessor 이다.
+```
+//d3.max function
+export default function max(values, valueof) {
+  let max;
+  if (valueof === undefined) {  //accessor valueof가 없을 때
+    for (const value of values) {
+      if (value != null
+          && (max < value || (max === undefined && value >= value))) {
+        max = value;
+      }
+    }
+  } else {  //valueof function이 있다
+    let index = -1;
+    for (let value of values) {
+      if ((value = valueof(value, ++index, values)) != null
+          && (max < value || (max === undefined && value >= value))) {
+        max = value;
+      }
+    }
+  }
+  return max;
+}
+```
+max에서 정의된 함수는 parameter가 3개이다. 예제에서 정의한 새로욶 ㅏㅁ수는 parameter가 1개. 정상적으로 작동할까? 에러가 없다! 없는 parameter은 무시하고 그냥 정의된 함수를 실행한다. if문의 세부 논리의 논점인 for(let value ...) 는 바로 밑에서 정리
+
+### for of
+for of 에서 for 문 안의 변수는 iteration할 때 마다 새로 저장된다. 반복이 끝나면 새로운 let으로 저장!
+```
+for (let value of iterable){
+    value ...;
+}
+```
+
+# javascript domain()
+
+#javascript map()
 * 
