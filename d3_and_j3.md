@@ -112,6 +112,65 @@ my name is baek
 override : new Attr , and original attributes still alive: kim
 ```
 
+## 상속
+
+### prototype
+
+### OODP : observer pattern
+observer < - > publisher
+정보가 전달되어야 한다.
+그런데 한 객체의 정보가 여러 객체들에게 바로 바로 전달되어야 할 때 사용한다.
+interface을 사용해서 연결을 낮춘다. 따라서 observer과 publisher라는 interface을 사용.
+
+```
+import java.util.ArrayList;
+import java.util.List;
+
+interface Observer{
+    void update(String str);
+}
+
+interface Publisher{
+    void notify(String str);
+    void add(Observer obs);
+}
+
+class newsMachine implements Publisher{
+    List<Observer> observers = new ArrayList<>();
+    
+    public void notify(String str){
+        for(Observer obs : observers){
+            obs.update(str);
+        }
+    }
+   public  void add(Observer obs){
+        observers.add(obs);
+    }
+}
+
+class subscriber implements Observer{
+    Publisher pub;
+    public subscriber(Publisher pub){
+        this.pub = pub;
+        pub.add(this);
+    }
+    // String title;
+    public void update(String str){
+        System.out.println(str);
+    }
+}
+
+public class driver{
+    public static void main(String[] args){
+        newsMachine magazine = new newsMachine();
+        subscriber subs = new subscriber(magazine);
+        subscriber subs2 = new subscriber(magazine);
+
+        magazine.notify("news!");
+    }
+}
+```
+
 ## asynchronous programming: promise and generator
 
 Anonymous function
@@ -138,3 +197,21 @@ Sq (x, y) => { function body; };
 ## Let 과 var 정리
 Let: block scope을 가진다.
 Var: block scope을 가지지 않는다. Block 외부에서도 접근 가능하다. 
+
+
+# D3
+## then
+```
+d3.csv('data.csv').then(data=>{
+    console.log(data);
+})
+```
+
+data parameter이름을 바꿔도 정상작동.
+data=> 부분을 바꾸면... 
+```
+function(data){
+
+}
+```
+의 모양이 된다. csv을 하면 어떤 object을 반환할 것이다. data.cv의 값들을 가지고 있는 object일 것이다. 그리고 then 이라는 함수를 사용하고, 그 parameter으로 function이 들어간다. then 함수 자체가 parameter으로 함수가 들어가도록 설계되었나보다. 그런데 들어가는 함수의 parameter가 data으로 되어 있다. 이건 어떤 구조인지 모르겠다... 선
