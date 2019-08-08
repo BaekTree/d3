@@ -367,7 +367,8 @@ export default function max(values, valueof) {
   return max;
 }
 ```
-max에서 정의된 함수는 parameter가 3개이다. 예제에서 정의한 새로욶 ㅏㅁ수는 parameter가 1개. 정상적으로 작동할까? 에러가 없다! 없는 parameter은 무시하고 그냥 정의된 함수를 실행한다. if문의 세부 논리의 논점인 for(let value ...) 는 바로 밑에서 정리
+max에서 정의된 함수는 parameter가 3개이다. 예제에서 정의한 새로욶 ㅏㅁ수는 parameter가 1개. 정상적으로 작동할까? 에러가 없다! 없는 parameter은 무시하고 그냥 정의된 함수를 실행한다. if문의 세부 논리의 논점인 for(let value ...) 는 바로 밑에서 정리. 
+*** 그러나 이것은 사실 valueof 함수에서 2,3번째 parameter들이 optional한 함수이기 때문이다...?
 
 ### for of
 for of 에서 for 문 안의 변수는 iteration할 때 마다 새로 저장된다. 반복이 끝나면 새로운 let으로 저장!
@@ -379,5 +380,9 @@ for (let value of iterable){
 
 # javascript domain()
 
-#javascript map()
-* 
+#javascript map(function)
+> array.map(function)
+* 배열이 있을 때, 배열의 element를 다른 값으로 mapping 할 때 사용. 
+* [1,7,3,7] ---( x 10)---> [10,70,30,70]
+* mapping 하는 규칙이 function으로 정의되어 parameter으로 들어간다.
+* mapping 한 결과를 반환한다.

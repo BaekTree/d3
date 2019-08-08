@@ -5,13 +5,22 @@ const height = +svg.attr('height');
 
 const render = data => {
     //linear scale
+    //xScale function declaration
+    var func = function(d,i,v){
+        return d.population;
+    }
+
     const xScale = d3.scaleLinear()
-        .domain([0,d3.max(data, d=>d.population)])
+        .domain([0,d3.max(data, func)])
         .range([0,width]);
 
         console.log(xScale.domain());
         console.log(xScale.range());
 
+    //yscale function declaration
+    const yScale = d3.scaleBand()
+        .domain(data.map(d => d.country))
+        .range([0,height]);
 
 
     //link rect to data
