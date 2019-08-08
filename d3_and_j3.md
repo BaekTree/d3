@@ -245,4 +245,54 @@ functionTwo(1,(x)=>alert(x));
 
 * callback function 개념을 위의 csv.then(daa=>...) 상황에 적용하면...
 
+# d3.csv
+>d3.csv(url[[, accessor], callback])
 
+아마 csv 내부의 모양은 이런 모양일 것이다.
+```
+d3.csv("url",callback){
+    var data = manipulation of "url" data
+    callback(data);
+}
+```
+* 다음의 두 코드는 동일하다.
+```
+//using anonymous function
+var mycircles = d3.csv("circles.csv", function(data) {
+    console.log(data);
+});
+
+//using concrete function
+func1 = functoin(var){//callback function
+    console.log(var);
+}
+
+var mycircles = d3.csv("circles.csv", func1);
+```
+* 실제 자주 사용하는 코드: anonymous function을 자주 사용
+```
+var mycircles = d3.csv("circles.csv", function(data) {
+    console.log(data);
+});
+
+```
+* circles.csv을 불러들인다. callback function으로 data을 parameter으로 하는 함수... 을 csv 함수 안에서 다시 부른다... 그 함수의 역할은 data 변수를 log한다. 그러니까 circles.csv에서 데이터를 뽑아서 그 데이터를 callback 함수에 paramenter 으로 집어넣는다. callback 함수는 받은 데이터를 가지고 log 한다. callback function의 의미로써는 csv에서 받은 자료를 받아서 어떻게 가공할지는 새로 정의해주는 것이다. 따라서 paramenter의 이름이 자유롭게 변경되어도 된다. 
+* callback function의 body와 parameter가 prototype에서 아무렇게나 정의되어도 실제 들어가는 parameter는 csv에서 정의된 변수의 이름으로 들어간다...
+
+# Javascript Array forEach() Method
+>array.forEach(function(currentValue, index, arr), thisValue)
+```
+var sum = 0;
+var numbers = [65, 44, 12, 4];
+numbers.forEach(myFunction);//array element을 하나 하나 callback function에 parameter으로 넣는다.
+
+function myFunction(item) {
+  sum += item;//parameter으로 받은 item을 sum에 더한다.
+  document.getElementById("demo").innerHTML = sum;//출력
+}
+```
+
+# data join
+* data   <->   element
+* enter update exit
+* 
