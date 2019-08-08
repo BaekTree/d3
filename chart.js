@@ -4,7 +4,17 @@ const width = +svg.attr('width');
 const height = +svg.attr('height');
 
 const render = data => {
-    
+    //linear scale
+    const xScale = d3.scaleLinear()
+        .domain([0,d3.max(data, d=>d.population)])
+        .range([0,width]);
+
+        console.log(xScale.domain());
+        console.log(xScale.range());
+
+
+
+    //link rect to data
     svg.selectAll('rect')//non for now
         .data(data).enter().append('rect')
         .attr('width',300)//each data element linked to a rect
