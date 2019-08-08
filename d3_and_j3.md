@@ -200,7 +200,7 @@ Var: block scope을 가지지 않는다. Block 외부에서도 접근 가능하�
 
 
 # D3
-## then
+## then : d3 promise syntax
 ```
 d3.csv('data.csv').then(data=>{
     console.log(data);
@@ -214,4 +214,35 @@ function(data){
 
 }
 ```
-의 모양이 된다. csv을 하면 어떤 object을 반환할 것이다. data.cv의 값들을 가지고 있는 object일 것이다. 그리고 then 이라는 함수를 사용하고, 그 parameter으로 function이 들어간다. then 함수 자체가 parameter으로 함수가 들어가도록 설계되었나보다. 그런데 들어가는 함수의 parameter가 data으로 되어 있다. 이건 어떤 구조인지 모르겠다... 선
+의 모양이 된다. csv을 하면 어떤 object을 반환할 것이다. data.cv의 값들을 가지고 있는 object일 것이다. 그리고 then 이라는 함수를 사용하고, 그 parameter으로 function이 들어간다. then 함수 자체가 parameter으로 함수가 들어가도록 설계되었나보다. 그런데 들어가는 함수의 parameter가 data으로 되어 있다. 이건 어떤 구조인지 모르겠다... 
+
+## JavaScript Callback Functions
+>>In computer programming, a callback is a piece of executable code that is passed as an argument to other code, which is expected to call back (execute) the argument at some convenient time.
+
+The invocation may be immediate as in a synchronous callback or it might happen at later time, as in an asynchronous callback.
+
+다른 함수로 parameter으로 들어가서 그 안에서 불려지는 함수를 callback function 이라고 하는 것 같다. 
+```
+function functionOne(x) { alert(x); }
+
+function functionTwo(var1, callback) {
+    callback(var1);		
+}
+
+functionTwo(2, functionOne);
+//functionOne이 parameter으로 들ㅇ가서 functionTwo block 안에서 call 된다. functionOne이callback function이다.
+```
+
+callback function은 anonymous functions상황에서도 적용된다.
+```
+function functionTwo(var1, callback){
+    callback(var1);
+}
+
+functionTwo(1,function(x){alert(x);});
+functionTwo(1,(x)=>alert(x));
+```
+
+* callback function 개념을 위의 csv.then(daa=>...) 상황에 적용하면...
+
+
