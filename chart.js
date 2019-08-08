@@ -39,8 +39,8 @@ const render = data => {
     
     //각각의 위치!
     bandwidth만큼 + ??
-    'y' = function func(each element){
-        return yScale(each element.country)
+    'y'(total data에서 해당되는 부분) = function func(totla data){
+        return yScale(totla data .country)
     }
     */
     svg.selectAll('rect')//non for now
@@ -50,7 +50,7 @@ const render = data => {
         // .attr('height',300);//each rect height and width
 
         //ajdusted size of rects
-        .attr('y',)
+        .attr('y',d=>yScale(d.country))
         .attr('width',d=>xScale(d.population))//each data element linked to a rect
         .attr('height',yScale.bandwidth());//each rect height and width
 
