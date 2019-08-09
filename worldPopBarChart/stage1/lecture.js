@@ -57,7 +57,7 @@ const render = data => {
         // .attr('fill','blue')
 };
 
-d3.csv('https://baektree.github.io/d3/pop3.csv').then(data => {
+d3.csv('https://baektree.github.io/d3/src.csv').then(data => {
     data.forEach(d =>{
         d.population = +d.population;//array에 새로 저장한다. forEach method
     });

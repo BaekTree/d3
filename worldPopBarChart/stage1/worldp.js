@@ -111,7 +111,7 @@ const render = function (data) {
       ;
 };
 
-data = d3.csv("https://baektree.github.io/d3/pop3.csv").then(d => {
+data = d3.csv("https://baektree.github.io/d3/src.csv").then(d => {
    // d.population = +d.population;
    /**위의 코드는 desired된 data를 표현하지 못한다.
     * 이 코드가 원하고자 하는 것은 data array object에서 pupulation column에 해당하는 
