@@ -398,6 +398,7 @@ for (let value of iterable){
 >If a value is specified, sets the attribute with the specified name to the specified value on the selected elements and returns this selection. If the value is a constant, all elements are given the same attribute value; otherwise, if the value is a function, it is evaluated for each selected element, in order, being passed the current datum (d), the current index (i), and the current group (nodes), with this as the current DOM element (nodes[i]). The function’s return value is then used to set each element’s attribute. A null value will remove the specified attribute.
 * value parameter가 constant이면 모든 element에 동일한 값을 적용한다.
 * 만약 value가 function이면 모든 element을 각각의 element에 해당되는 작동을 수행한다. 아마 모든 element을 돌면서 name을 input값으로 넣고 각각의 if --- 등의 조건에 따라 다른 일을 수행할 것이다.
+* value가 function도 되고 constant 한 값도 된다면 문법적으로 value가 함수로 들어갈 때에는 callback function인 것으로 추정된다. 그리고 그 callback function에 들어가는 parameter은 width가 포함되어 있는 data 전체이다. 
 * ***input으로 들어가는 값은 element 전체가 bind된 데이터이다.*** data()에 parameter으로 들어가는 data! 일단 전체를 함수 안으로 넣고, 함수 안에서 가공할 규칙을 만든다. 
 * callback으로 들어간다... 왜?어떻게?
 * 사실 어떻게 가공할지 아직 아무것도 모르니까 그냥 다 던져 넣는 것이 자유도가 높을 것이다. 
