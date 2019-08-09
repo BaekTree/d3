@@ -2,30 +2,40 @@
 <html>
 
 <head>
-    <script src="pointsText.js"></script>
+    <!-- <script src="pointsText.js"></script> -->
 </head>
 
 <body>
     <script>
-        function Person(name) {
-            this.name = name;
-            this.introduce = function () {
-                return 'my name is ' + this.name;
-            }
-        }
+        //test of function parameter
+        func1 = function(var1){
+            console.log(var1);
+        };
+        func1(10);  //which log 10
+        func1(10,20);   // no error!
 
-        var p1 = new Person('baek');
-        document.write(p1.introduce());
 
-        document.write("<br>");
+        // test of constructor
 
-        var p2 = new Person('kim');
+        // function Person(name) {
+        //     this.name = name;
+        //     this.introduce = function () {
+        //         return 'my name is ' + this.name;
+        //     }
+        // }
 
-        p2.newAttr = 'new Attr'
-        p2.introduce = function(){
-            return 'override : ' + this.newAttr + " , and original attributes still alive: " + this.name;
-        }
-        document.write(p2.introduce());
+        // var p1 = new Person('baek');
+        // document.write(p1.introduce());
+
+        // document.write("<br>");
+
+        // var p2 = new Person('kim');
+
+        // p2.newAttr = 'new Attr'
+        // p2.introduce = function(){
+        //     return 'override : ' + this.newAttr + " , and original attributes still alive: " + this.name;
+        // }
+        // document.write(p2.introduce());
     </script>
 </body>
 

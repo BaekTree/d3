@@ -50,7 +50,7 @@ const render = data => {
         // .attr('height',300);//each rect height and width
 
         //ajdusted size of rects
-        .attr('y',d=>yScale(d.country))
+        .attr('y',d=>yScale(d.country)) 
         .attr('width',d=>xScale(d.population))//each data element linked to a rect
         .attr('height',yScale.bandwidth());//each rect height and width
 

@@ -200,21 +200,7 @@ Var: block scope을 가지지 않는다. Block 외부에서도 접근 가능하�
 
 
 # D3
-## then : d3 promise syntax
-```
-d3.csv('data.csv').then(data=>{
-    console.log(data);
-})
-```
 
-data parameter이름을 바꿔도 정상작동.
-data=> 부분을 바꾸면... 
-```
-function(data){
-
-}
-```
-의 모양이 된다. csv을 하면 어떤 object을 반환할 것이다. data.cv의 값들을 가지고 있는 object일 것이다. 그리고 then 이라는 함수를 사용하고, 그 parameter으로 function이 들어간다. then 함수 자체가 parameter으로 함수가 들어가도록 설계되었나보다. 그런데 들어가는 함수의 parameter가 data으로 되어 있다. 이건 어떤 구조인지 모르겠다... 
 
 ## JavaScript Callback Functions
 >>In computer programming, a callback is a piece of executable code that is passed as an argument to other code, which is expected to call back (execute) the argument at some convenient time.
@@ -278,6 +264,15 @@ var mycircles = d3.csv("circles.csv", function(data) {
 ```
 * circles.csv을 불러들인다. callback function으로 data을 parameter으로 하는 함수... 을 csv 함수 안에서 다시 부른다... 그 함수의 역할은 data 변수를 log한다. 그러니까 circles.csv에서 데이터를 뽑아서 그 데이터를 callback 함수에 paramenter 으로 집어넣는다. callback 함수는 받은 데이터를 가지고 log 한다. callback function의 의미로써는 csv에서 받은 자료를 받아서 어떻게 가공할지는 새로 정의해주는 것이다. 따라서 paramenter의 이름이 자유롭게 변경되어도 된다. 
 * callback function의 body와 parameter가 prototype에서 아무렇게나 정의되어도 실제 들어가는 parameter는 csv에서 정의된 변수의 이름으로 들어간다...
+
+## then : d3 promise syntax
+이전에 csv함수의 parameter을 이용해서 callback function을 사용했다. d3 v4 혹은 v5 이후로 promise가 등장해서 다음과 같이도 사용할 수 있다.
+```
+d3.csv('data.csv').then(data=>{
+    console.log(data);
+})
+```
+csv의 함수는 data array object 을 반환한다. then 함수를 사용하면 해당 object을 parameter으로 넣어 callback 함수를 부른다.
 
 # Javascript Array forEach() Method
 >array.forEach(function(currentValue, index, arr), thisValue)
@@ -404,6 +399,7 @@ for (let value of iterable){
 * value parameter가 constant이면 모든 element에 동일한 값을 적용한다.
 * 만약 value가 function이면 모든 element을 각각의 element에 해당되는 작동을 수행한다. 아마 모든 element을 돌면서 name을 input값으로 넣고 각각의 if --- 등의 조건에 따라 다른 일을 수행할 것이다.
 * ***input으로 들어가는 값은 element 전체가 bind된 데이터이다.*** data()에 parameter으로 들어가는 data! 일단 전체를 함수 안으로 넣고, 함수 안에서 가공할 규칙을 만든다. 
+* callback으로 들어간다... 왜?어떻게?
 * 사실 어떻게 가공할지 아직 아무것도 모르니까 그냥 다 던져 넣는 것이 자유도가 높을 것이다. 
 
 # d3.bandscale
