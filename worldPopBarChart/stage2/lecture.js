@@ -39,7 +39,7 @@ const render = data => {
         return d.population;
     }
     const xScale = d3.scaleLinear()
-        .domain([0, d3.max(data, func)])
+        .domain([0, d3.max(data, d=>d.population)])
         .range([0, width]);
 
     //yscale function declaration
@@ -51,8 +51,8 @@ const render = data => {
         .data(data).enter().append('rect')
 
         //ajdusted size of rects
-        .attr('y', d => yScale(d.country))
-        .attr('width', d => xScale(d.population))
+        .attr('y', d => yScale(yValue(d)))
+        .attr('width', d => xScale(xValue(d)))
         .attr('height', yScale.bandwidth());
 
 };

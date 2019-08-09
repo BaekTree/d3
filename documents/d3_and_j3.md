@@ -339,6 +339,17 @@ scale(100);//1
 Returns the maximum value in the given iterable using natural order. If the iterable contains no comparable values, returns undefined. **An optional accessor function may be specified, which is equivalent to calling Array.from before computing the maximum value.**
 from d3 github
 
+callback functioni은 받은 array에서 비교를 할 대상을 특정하거나 할 때 그것을 분류하는데 사용하는 함수 인것 같다. 분류를 하는 방법은 먼저 array에서 element을 for each 으로 돌게 하면서, 한번 돌 때 마다 그 element 안에서 비교할 대상을 뽑아낸다. 그리고 그 뽑아낸 대상들을 가지고 비교한다. 
+주어진 예시: world bar chart stage 1
+```
+d3.max(data, d=>d.population)];
+
+```
+data 는 object array 이다. [{name:value1,population: value2},{...},...,{...}]
+여기서 for each을 돌면 하나의 element, 즉 하나의 object에 접근.
+그 object 안에서 population의 value인 value2에 접근. 
+data의 element인 objects 을 돌면서 object 안의 population의 value인 value2들을 비교한다. 그리고 그 value2을 반환한다.
+<br>이 흐름은 아래 max source에서도 동일하게 파악할 수 있다.
 ```
 const xScale = d3.scaleLinear()
         .domain([0,d3.max(data, d=>d.population)])
@@ -367,6 +378,17 @@ export default function max(values, valueof) {
   }
   return max;
 }
+위의 설명과 source을 통합해보면... values는 data array이고, valueof 는 d을 받아 d.population을 return 하는 함수이다. 
+```
+for (let value of values) {//data array에서 하나를 받는다. 곧
+                            //{conuntry:..., population:...} object 하나이다.
+      if ((value = valueof(value, ++index, values)) != null//valueof함수에 받은 object를 넣는다. 이 함수의 결과로 object 안에 있는 object.population이 나온다. 그것이 value에 저장된다. 
+          && (max < value || (max === undefined && value >= value))) {//value 으로 저장된 population 값이 다른 값들과 비교된다. 
+        max = value;
+      }
+    }
+```
+
 ```
 max에서 정의된 함수는 parameter가 3개이다. 예제에서 정의한 새로욶 ㅏㅁ수는 parameter가 1개. 정상적으로 작동할까? 에러가 없다! 없는 parameter은 무시하고 그냥 정의된 함수를 실행한다. if문의 세부 논리의 논점인 for(let value ...) 는 바로 밑에서 정리. 
 *** 그러나 이것은 사실 valueof 함수에서 2,3번째 parameter들이 optional한 함수이기 때문이다...?
