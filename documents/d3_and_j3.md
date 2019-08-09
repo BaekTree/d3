@@ -327,6 +327,12 @@ scale(2);//0.02
 scale(100);//1
 ```
 
+>domain과 range 제대로 했는지 확인하기! 
+```
+  console.log(xScale.domain());
+  console.log(xScale.range());
+```
+
 ## d3.max(array, callback)
 * array에서 
 ># d3.max(iterable[, accessor]).
