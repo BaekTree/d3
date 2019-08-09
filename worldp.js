@@ -112,7 +112,36 @@ const render = function (data) {
 };
 
 data = d3.csv("https://baektree.github.io/d3/pop3.csv").then(d => {
-   d.population = +d.population;
+   // d.population = +d.population;
+   /**위의 코드는 desired된 data를 표현하지 못한다.
+    * 이 코드가 원하고자 하는 것은 data array object에서 pupulation column에 해당하는 
+    * value들을 string 에서 integer으로 바꾸고자 했다
+    * 그러나 이 코드는 원하는 일을 수행하지 않는다. 
+    * 의미가 다르기 때문이다. 
+    * 이 코드의 결과는 사실 아무 일도 수행하지 않는다. 
+    * 
+    * 이유는 callback function과 data array object의 형식에 있다.
+    * console.log(data)을 해보면 
+    * [{{country: "WORLD", population: "7794799"}},{...},...,{...}]이다.
+         즉 data object는 object들의 array이다. 
+         따라서 data array 안에는 population element가 없다. 
+         population elememt는 data array의 각element 안에 하나씩 있다.
+      그리고 callback은 data array전체를 그냥 넣어버린다. 
+      data array 안에 population element가 없으므로 아무 일도 하지 않는 것이다.
+      
+      우리가 원하고자 하는 일을 수행하도록 하는 명령어를 위해서는
+      data array의 element 들인 {}object에 각각 접근해야 한다.
+      따라서 forEach method을 사용해서 모든 element들에 접근해야 한다.
+      d.forEach(callback = function(arr){//모든 element에 접근
+         arr.population = + arr.population//각각의 element는 object이고 그 object 안에는
+                                          //population element가 있다!
+      })
+    */
+   d.forEach(callback = function(arr){//모든 element에 접근
+      arr.population = +arr.population//각각의 element는 object이고 그 object 안에는
+                                       //population element가 있다!
+   })
+   //d.forEach(d=>d.population = +arr.population)
    // console.log(d);
    render(d);
 });
