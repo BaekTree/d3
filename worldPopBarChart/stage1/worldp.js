@@ -70,6 +70,13 @@ const render = function (data) {
    // console.log(height);
    // console.log(yScale.bandwidth());
 
+   //domain과 range 제대로 했는지 확인하기! 
+   // console.log(xScale.domain());
+   // console.log(xScale.range());
+
+
+
+
 
    
    svg.selectAll('rect')
